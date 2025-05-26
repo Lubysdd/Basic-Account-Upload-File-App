@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <h1>Hoş Geldin, <%= user.username %>!</h1>
+  
+  <h2>Dosya Yükle</h2>
+  <form action="/upload" method="POST" enctype="multipart/form-data">
+    <input type="file" name="file" accept=".pdf,image/jpeg,image/svg+xml,.doc,.docx" required>
+    <button type="submit">Yükle</button>
+  </form>
+  
+  <h2>Hesaplama İşlemleri</h2>
+  <form action="/calculate" method="POST">
+    <input type="number" name="num1" placeholder="Sayı 1" required>
+    <input type="number" name="num2" placeholder="Sayı 2" required>
+    <select name="operation">
+      <option value="topla">Topla</option>
+      <option value="carp">Çarp</option>
+      <option value="yuzde">Yüzde Hesapla</option>
+    </select>
+    <button type="submit">Hesapla</button>
+  </form>
+
+  <p><a href="/admin">Yönetici Paneli</a> (yetkili kullanıcılar için)</p>
+</body>
+</html>

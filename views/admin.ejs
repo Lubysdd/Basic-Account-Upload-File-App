@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Yönetici Paneli</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <h1>Yönetici Paneli</h1>
+  <h2>Kullanıcı Listesi</h2>
+  <ul>
+    <% users.forEach(function(user) { %>
+      <li>
+        <strong><%= user.username %> (Email: <%= user.email %>)</strong>
+        <br>
+        Yüklenen Dosya Sayısı: <%= userFiles[user.id] ? userFiles[user.id].length : 0 %>
+        <br>
+        <% if (userFiles[user.id]) { %>
+          <ul>
+            <% userFiles[user.id].forEach(function(file) { %>
+              <li>
+                <strong><%= file.originalname %></strong> - Yüklenme: <%= file.uploadDate.toLocaleString() %> - Format: <%= file.mimetype %>
+                <br>
+                <% if (file.mimetype.startsWith('image/')) { %>
+                  <!-- Resim dosyası ise küçük önizleme -->
+                  <a href="/uploads/<%= file.filename %>" target="_blank">
+                    <img src="/uploads/<%= file.filename %>" alt="<%= file.originalname %>" style="max-width: 200px;">
+                  </a>
+                <% } else { %>
+                  <a href="/uploads/<%= file.filename %>" target="_blank">Dosyayı Görüntüle</a>
+                <% } %>
+              </li>
+            <% }) %>
+          </ul>
+        <% } %>
+      </li>
+    <% }) %>
+  </ul>
+</body>
+</html>

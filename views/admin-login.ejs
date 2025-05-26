@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Giriş</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <h1>Admin Giriş</h1>
+  <% if (error) { %>
+    <p style="color: red;"><%= error %></p>
+  <% } %>
+  <form action="/admin-login" method="POST">
+    <label for="adminPassword">Admin Şifresi:</label>
+    <input type="password" name="adminPassword" required>
+    <button type="submit">Giriş Yap</button>
+  </form>
+</body>
+</html>
